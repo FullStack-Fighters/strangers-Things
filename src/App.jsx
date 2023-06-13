@@ -18,10 +18,10 @@ async function getInfo(){
 getInfo()
   return (
     <>
-      <h1>hello world</h1>
+      <p>hello world</p>
       <Routes>
-        <Route path="/" element={HomePage} />
-        <Route path="/login" element={LoginPage} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
 
     </>

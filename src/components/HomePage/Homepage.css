@@ -1,0 +1,48 @@
+
+
+.categories {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    margin-left: 15rem;
+    margin-right: 15rem;
+    background-color:blue;
+    border-radius: 15%;
+}
+
+
+
+.cardBox{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    justify-content: space-around;
+}
+
+.itemCard {
+    background-color: antiquewhite;
+    color: black;
+    width: 16rem;
+    height: 22rem;
+   margin-top: 2rem;
+   margin-left: 1rem;
+   margin-right: 1rem;
+   border-radius: 6%;
+   justify-content: center;
+}
+.itemCard img{
+    width: 98%;
+    height: auto;
+    margin-top: .25rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 6%;
+}
+
+#location-price {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
