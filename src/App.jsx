@@ -14,6 +14,7 @@ async function getInfo(){
   }
   
 }
+
 getInfo()
   return (
     <>
