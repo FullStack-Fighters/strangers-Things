@@ -12,8 +12,10 @@ async function getInfo(){
   } catch (error) {
     console.log (error)
   }
-  getInfo()
+  
 }
+
+getInfo()
   return (
     <>
       <h1>hello world</h1>
