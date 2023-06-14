@@ -3,7 +3,7 @@
 export default function Post(){
 
     return (
-        <div class="itemCard">
+        <div className="itemCard">
             <img id="cardImg" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/hostedimages/1385481861i/7159203._SX540_.jpg" />
 
             <div id="cardInfo">

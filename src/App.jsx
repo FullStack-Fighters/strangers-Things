@@ -7,8 +7,7 @@ function App() {
   async function getInfo() {
     try {
       let response = await fetchApi();
-      let data = await response.json();
-      return(data)
+      
     } catch (error) {
       console.log(error);
     }
