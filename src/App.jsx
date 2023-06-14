@@ -1,7 +1,7 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import {fetchApi} from "./components/index"
-import {HomePage, LoginPage} from "./components/zcompConnect"
+import {HomePage, LoginPage, SinglePost, NavBar} from "./components/zcompConnect"
 function App() {
 async function getInfo(){
   try {
@@ -18,10 +18,11 @@ async function getInfo(){
 getInfo()
   return (
     <>
-      <p>hello world</p>
+      <NavBar/>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/posts/:post-id" element={<SinglePost />} />
       </Routes>
 
     </>
