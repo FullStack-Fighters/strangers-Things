@@ -1,17 +1,31 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CategoryBar, Post } from "../zcompConnect";
+import { fetchApi } from "../index";
 import "./Homepage.css";
 
 export default function HomePage() {
   const [searchedItem, setSearchedItem] = useState("");
+  const [allPosts, setAllPosts] = useState([]);
+
+  useEffect(() => {
+    const getPosts = async (props) => {
+        console.log("hi am props ",  props)
+      try {
+        const response = await fetch(fetchApi);
+        const data = response.json();
+        console.log(data.data.posts);
+
+        setAllPosts(data.data.posts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getPosts();
+  }, []);
+
   return (
     <div>
-      <div class="header">
-        <img id="logo" src="falconLogo.png" />
-        <p>Home Page</p>
-        <button id="loginButton">Login</button>
-      </div>
       <div class="categories">
         {/* i dont know if we want to hard code in the catagories or not. i am going to hard code them in and we can change it late if needs be */}
         <CategoryBar />
@@ -30,10 +44,13 @@ export default function HomePage() {
         </form>
       </div>
       <div class="cardBox">
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+       { allPosts && allPosts.length ? 
+            allPosts.map((element) => {
+                return(
+                <SinglePost key={props._id} element={props.element}/>
+                )
+            })
+        : <h2>Loading...</h2>}
       </div>
     </div>
   );
