@@ -1,10 +1,9 @@
 const COHORT_NAME = "/2304-FTB-ET-WEB-FT";
 const BASE_URL = `https://strangers-things.herokuapp.com/api${COHORT_NAME}`;
-import { useState } from "react";
+import { useState, React } from "react";
 
 const SinglePost = (props) => {
     const [allPosts, setAllPosts] = useState[""]
-  // console.log("SINGLE POST PROPS:", props.post)
 
     const deletePost = async (event) => {
     try {
@@ -33,15 +32,15 @@ const SinglePost = (props) => {
 
   return (
     <div>
-      <h2>Name of Item: {props.post.title}</h2>
-      <p>Description: {props.post.description}</p>
-      <p>Price: {props.post.description}</p>
-      <p>Location: {props.post.description}</p>
+      <h2>Name of Item: {props.element.post.title}</h2>
+      <p>Description: {props.element.post.description}</p>
+      <p>Price: {props.post.element.description}</p>
+      <p>Location: {props.element.post.description}</p>
       {/* <p>Delivery Available: {({props.post.willDeliver} ? "Yes" : "No, pickup only")}</p> */}
-      <p>Message owner: {props.post.author._id}</p>
+      <p>Message owner: {props.element.post.author._id}</p>
             
       <button onClick={deletePost} value={props.post.id}>
-        Delete Product #{props.post.name}
+        Delete Product #{props.element.post.name}
       </button>
     </div>
   );
