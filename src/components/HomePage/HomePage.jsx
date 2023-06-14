@@ -9,15 +9,12 @@ export default function HomePage() {
   const [allPosts, setAllPosts] = useState([]);
 
   useEffect(() => {
-    const getPosts = async (props) => {
-        console.log("hi am props ",  props)
+    const getPosts = async () => {
+        // console.log("hi am props ",  props)
       try {
-        const response = await fetch(fetchApi);
+        const response = await fetchApi();
         console.log(response)
-        const data = response.json();
-        console.log(data.data.posts);
-
-        setAllPosts(data.data.posts);
+        setAllPosts(response);
       } catch (error) {
         console.log(error);
       }
@@ -48,7 +45,7 @@ export default function HomePage() {
        { allPosts && allPosts.length ? 
             allPosts.map((element) => {
                 return(
-                <SinglePost key={element._id} element={element}/>
+                <SinglePost key={element._id} element={element} allPosts={allPosts}/>
                 )
             })
         : <h2>Loading...</h2>}
