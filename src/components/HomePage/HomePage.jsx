@@ -48,7 +48,7 @@ export default function HomePage() {
        { allPosts && allPosts.length ? 
             allPosts.map((element) => {
                 return(
-                <SinglePost key={props._id} element={element}/>
+                <SinglePost key={element._id} element={element}/>
                 )
             })
         : <h2>Loading...</h2>}
