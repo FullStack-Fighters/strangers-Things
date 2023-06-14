@@ -1,4 +1,10 @@
-
+.header{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-left:5%;
+    margin-right: 3%;
+}
 
 .categories {
     display: flex;
@@ -9,7 +15,10 @@
     background-color:blue;
     border-radius: 15%;
 }
-
+.searchbar {
+    text-align: center;
+    margin-top: 1rem;
+}
 
 
 .cardBox{
