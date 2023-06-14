@@ -15,7 +15,7 @@ const AddPost = () => {
             try {
                 const response = await fetchApi()
                 const data = response.json()
-                setAllPosts(data.data.products) 
+                setAllPosts(data.data.posts) 
             } catch (error) {
                 console.log(error)
             }
