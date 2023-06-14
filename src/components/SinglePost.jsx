@@ -47,4 +47,4 @@ const SinglePost = (props) => {
   );
 }
 
-export default SingleProduct;
+export default SinglePost;
