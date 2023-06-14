@@ -115,7 +115,7 @@ const AddPost = () => {
                     ></input>
                 </div>
             </fieldset> */}
-
+            {/* need to add location, messages - in array format, active- returns boolean */}
           <button type="submit">Submit!</button>
         </form>
       </>
