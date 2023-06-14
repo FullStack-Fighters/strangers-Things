@@ -1,9 +1,10 @@
 const COHORT_NAME = "/2304-FTB-ET-WEB-FT";
 const BASE_URL = `https://strangers-things.herokuapp.com/api${COHORT_NAME}`;
-import { useState, React } from "react";
+import { useState } from "react";
 
 const SinglePost = (props) => {
-    const [allPosts, setAllPosts] = useState[""]
+    const [allPosts, setAllPosts] = useState([props.allPosts])
+    console.log("HELLOOOOO", props)
 
     const deletePost = async (event) => {
     try {
@@ -24,7 +25,7 @@ const SinglePost = (props) => {
         }
       });
 
-      props.setAllPosts(updatedItemList);
+      setAllPosts(updatedItemList);
     } catch (error) {
       console.log(error);
     }
@@ -32,15 +33,15 @@ const SinglePost = (props) => {
 
   return (
     <div>
-      <h2>Name of Item: {props.element.post.title}</h2>
-      <p>Description: {props.element.post.description}</p>
-      <p>Price: {props.post.element.description}</p>
-      <p>Location: {props.element.post.description}</p>
+      <h2>Name of Item: {props.element.title}</h2>
+      <p>Description: {props.element.description}</p>
+      <p>Price: {props.element.description}</p>
+      <p>Location: {props.element.description}</p>
       {/* <p>Delivery Available: {({props.post.willDeliver} ? "Yes" : "No, pickup only")}</p> */}
-      <p>Message owner: {props.element.post.author._id}</p>
+      <p>Message owner: {props.element.author._id}</p>
             
-      <button onClick={deletePost} value={props.post.id}>
-        Delete Product #{props.element.post.name}
+      <button onClick={deletePost} value={props.element.id}>
+        Delete Product #{props.element.name}
       </button>
     </div>
   );
