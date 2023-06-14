@@ -5,7 +5,7 @@ export const fetchApi = async () => {
     try {
         const response = await fetch(`${BASE_URL}/posts`)
         const data = await response.json()
-        console.log(data)
+        return (data.data.post)
     } catch (error) {
         console.log(error)
     }
