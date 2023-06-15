@@ -8,7 +8,9 @@ const AddPost = () => {
     const [newTitle, setNewTitle] = useState("")
     const [newDescription, setNewDescription] = useState("")
     const [newPrice, setNewPrice] = useState("")
-    // const [newWillDeliver, setNewWillDeliver] = useState(false)
+    const [newLocation, setNewLocation] = useState("")
+    const [newMessage, setNewMessage] = useState([])
+    const [newWillDeliver, setNewWillDeliver] = useState(false)
 
     useEffect( () => {
         const getData = async () => {
@@ -38,7 +40,9 @@ const AddPost = () => {
                         title: setNewTitle,
                         description: setNewDescription,
                         price: setNewPrice,
-                        // willDeliver: setNewWillDeliver
+                        location: setNewLocation,
+                        message: setNewMessage,
+                        willDeliver: setNewWillDeliver
                     }
                 })
             });
@@ -87,7 +91,33 @@ const AddPost = () => {
               setNewPrice(event.target.value);
             }}
           ></input>
-{/* 
+
+          <label htmlFor="location">Enter Your Location:</label>
+          <br />
+          <input
+            name="location"
+            type="text"
+            placeholder="Location"
+            value={newLocation}
+            onChange={(event) => {
+              setNewLocation(event.target.value);
+            }}
+          ></input>
+
+          <label htmlFor="message">Send a Message:</label>
+          <br />
+          <input
+            name="message"
+            type="textarea"
+            placeholder="Message"
+            rows="5"
+            cols="100"
+            value={newMessage}
+            onChange={(event) => {
+              setNewMessage(event.target.value);
+            }}
+          ></input>
+
             <fieldset>
                 <legend>Select Delivery or Pickup for Item:</legend>
                 <div>
@@ -114,8 +144,8 @@ const AddPost = () => {
                         }
                     ></input>
                 </div>
-            </fieldset> */}
-            {/* need to add location, messages - in array format, active- returns boolean */}
+            </fieldset>
+ 
           <button type="submit">Submit!</button>
         </form>
       </>
