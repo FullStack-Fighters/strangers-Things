@@ -12,7 +12,7 @@ export default function LoginPage() {
   
     async function registeredUser () {
       try {
-        const response = await fetch(`${BASE_URL}/users/login`, {
+        const response = await fetch(`${BASE_URL}/users/register`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export default function LoginPage() {
         console.log("useEffect fired");
         console.log(data)
          if (!data.success){
-          console.log("username or password are incorrect")
+          console.log("Username already used")
          }
          else{
           localStorage.setItem("token", data.data.token);
