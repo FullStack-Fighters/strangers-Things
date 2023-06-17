@@ -66,6 +66,7 @@ export default function LoginPage() {
           <button type="submit">Submit</button>
         </form>
       </div>
+      <br />
       <div>
         <button><Link to="/register">Register Here</Link></button>
       </div>
