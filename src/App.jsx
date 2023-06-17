@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/posts/:post-id" element={<IndividualPost />} />
+        <Route path="/posts/:postid" element={<IndividualPost />} />
         <Route path="/new-post" element={<AddPost />} />
       </Routes>
     </>
