@@ -1,26 +1,34 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { fetchApi } from "./components/index";
-import { HomePage, LoginPage, SinglePost, AddPost, NavBar } from "./components/zcompConnect";
+import {
+  HomePage,
+  LoginPage,
+  SinglePost,
+  AddPost,
+  NavBar,
+  RegisterPage,
+  IndividualPost,
+} from "./components/zcompConnect";
 
 function App() {
   async function getInfo() {
     try {
       let response = await fetchApi();
-      
     } catch (error) {
       console.log(error);
     }
   }
 
-  getInfo()
+  getInfo();
   return (
     <>
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/posts/:post-id" element={<SinglePost />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/posts/:post-id" element={<IndividualPost />} />
         <Route path="/new-post" element={<AddPost />} />
       </Routes>
     </>
