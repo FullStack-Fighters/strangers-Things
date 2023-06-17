@@ -47,8 +47,8 @@ const SinglePost = (props) => {
       {/* <Link to={`/posts/${props.element._id}`}>See More</Link> */}
       <p>id: {props.element._id}</p>
       <p>Description: {props.element.description}</p>
-      <p>Price: {props.element.description}</p>
-      <p>Location: {props.element.description}</p>
+      <p>Price: {props.element.price}</p>
+      <p>Location: {props.element.location}</p>
       {/* <p>Delivery Available: {({props.post.willDeliver} ? "Yes" : "No, pickup only")}</p> */}
       <p>Message owner: {props.element.author._id}</p>
             
