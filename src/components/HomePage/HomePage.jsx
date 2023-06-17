@@ -7,13 +7,14 @@ import "./Homepage.css";
 export default function HomePage() {
   const [searchedItem, setSearchedItem] = useState("");
   const [allPosts, setAllPosts] = useState([]);
+  const [destination, setDestination] = useState()
 
   useEffect(() => {
     const getPosts = async () => {
         // console.log("hi am props ",  props)
       try {
         const response = await fetchApi();
-        console.log(response)
+        // console.log(response)
         setAllPosts(response);
       } catch (error) {
         console.log(error);

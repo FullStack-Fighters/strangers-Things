@@ -46,7 +46,7 @@ export default function LoginPage() {
 
   return (
     <div>
-      <h1>Login Page</h1>
+      <h1>Register Page</h1>
       <form onSubmit={handleSubmit}>
         <label>Username</label>
         <input
