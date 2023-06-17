@@ -1,15 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { fetchApi } from "./components/index";
-import {
-  HomePage,
-  LoginPage,
-  SinglePost,
-  AddPost,
-  NavBar,
-  RegisterPage,
-  IndividualPost,
-} from "./components/zcompConnect";
+import { HomePage, LoginPage, SinglePost, AddPost, NavBar, RegisterPage, IndividualPost } from "./components/zcompConnect";
 
 function App() {
   async function getInfo() {
