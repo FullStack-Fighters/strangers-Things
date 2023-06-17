@@ -10,13 +10,14 @@ const AddPost = () => {
     const [newPrice, setNewPrice] = useState("")
     const [newLocation, setNewLocation] = useState("")
     const [newMessage, setNewMessage] = useState([])
-    const [newWillDeliver, setNewWillDeliver] = useState("")
+    const [newWillDeliver, setNewWillDeliver] = useState(false)
 
     useEffect( () => {
         const getData = async () => {
             try {
                 const response = await fetchApi()
-                setAllPosts(response) 
+                const data = response.json()
+                setAllPosts(data.data.posts) 
             } catch (error) {
                 console.log(error)
             }
@@ -66,7 +67,6 @@ const AddPost = () => {
               setNewTitle(event.target.value);
             }}
           ></input>
-          <br />
 
           <label htmlFor="description">Enter Item Description Below:</label>
           <br />
@@ -79,7 +79,6 @@ const AddPost = () => {
               setNewDescription(event.target.value);
             }}
           ></input>
-          <br />
 
           <label htmlFor="price">Enter Item Price:</label>
           <br />
@@ -92,20 +91,6 @@ const AddPost = () => {
               setNewPrice(event.target.value);
             }}
           ></input>
-          <br />
-
-          <label htmlFor="willDeliver">Delivery Available:</label>
-          <br />
-          <input
-            name="price"
-            type="text"
-            placeholder='type "YES" or "NO"'
-            value={newWillDeliver}
-            onChange={() => {
-              newWillDeliver === "YES" ? setNewWillDeliver(true) : setNewWillDeliver(false)
-            }}
-          ></input>
-          <br />
 
           <label htmlFor="location">Enter Your Location:</label>
           <br />
@@ -118,7 +103,6 @@ const AddPost = () => {
               setNewLocation(event.target.value);
             }}
           ></input>
-          <br />
 
           <label htmlFor="message">Send a Message:</label>
           <br />
@@ -133,9 +117,8 @@ const AddPost = () => {
               setNewMessage(event.target.value);
             }}
           ></input>
-          <br />
 
-          {/* <fieldset>
+            {/* <fieldset>
                 <legend>Select Delivery or Pickup for Item:</legend>
                 <div>
                     <label htmlFor="willDeliver">Available for Delivery</label>
@@ -162,7 +145,7 @@ const AddPost = () => {
                     ></input>
                 </div>
             </fieldset> */}
-
+ 
           <button type="submit">Submit!</button>
         </form>
       </>
