@@ -1,10 +1,16 @@
 const COHORT_NAME = "/2304-FTB-ET-WEB-FT";
 const BASE_URL = `https://strangers-things.herokuapp.com/api${COHORT_NAME}`;
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+
+
+
 
 const SinglePost = (props) => {
     const [allPosts, setAllPosts] = useState([props.allPosts])
-    console.log("HELLOOOOO", props)
+    const navigate =useNavigate()
+    const [destination, setDestination] = useState()
+    // console.log("HELLOOOOO", props)
 
     const deletePost = async (event) => {
     try {
@@ -30,10 +36,16 @@ const SinglePost = (props) => {
       console.log(error);
     }
   }
+  const handleClick = ()=>{
+    navigate(`/posts/${props.element._id}`)
+
+  }
 
   return (
-    <div>
+    <div className="itemCard"  onClick={handleClick}>
       <h2>Name of Item: {props.element.title}</h2>
+      {/* <Link to={`/posts/${props.element._id}`}>See More</Link> */}
+      <p>id: {props.element._id}</p>
       <p>Description: {props.element.description}</p>
       <p>Price: {props.element.description}</p>
       <p>Location: {props.element.description}</p>
