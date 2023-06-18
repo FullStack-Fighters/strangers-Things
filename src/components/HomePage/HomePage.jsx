@@ -9,6 +9,17 @@ export default function HomePage() {
   const [allPosts, setAllPosts] = useState([]);
   const [destination, setDestination] = useState()
 
+  const filteredPosts = allPosts.filter((targetedPost) => {
+   let PostInQuestion = targetedPost.title.toLowerCase();
+   let searchQuery = searchedItem.toLowerCase()
+    console.log(targetedPost)
+
+   if (PostInQuestion.includes(searchQuery)){
+    return targetedPost
+   }
+  })
+
+
   useEffect(() => {
     const getPosts = async () => {
         // console.log("hi am props ",  props)
@@ -43,8 +54,8 @@ export default function HomePage() {
         </form>
       </div>
       <div className="cardBox">
-       { allPosts && allPosts.length ? 
-            allPosts.map((element) => {
+       { filteredPosts && filteredPosts.length ? 
+            filteredPosts.map((element) => {
                 return(
                 <SinglePost key={element._id} element={element} allPosts={allPosts}/>
                 )
