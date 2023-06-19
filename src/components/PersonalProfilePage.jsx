@@ -3,7 +3,7 @@ import { BASE_URL, currentToken} from "../components/index"
 import "../App.css"
 
 
-const SentMessages = () => {
+const MyProfile = () => {
     const [myPosts, setMyPosts] = useState([])
     const [myId, setMyId] = useState("")
     const [myUsername, setMyUsername] = useState("")
@@ -45,4 +45,4 @@ const SentMessages = () => {
     )
 }
 
-export default SentMessages
+export default MyProfile
