@@ -24,7 +24,6 @@ export default function LoginPage() {
         }),
       });
       const data = await response.json();
-      console.log("useEffect fired");
       console.log(data);
       if (!data.success) {
         console.log("username or password are incorrect");

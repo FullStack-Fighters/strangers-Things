@@ -28,6 +28,10 @@
     margin-right: 2rem;
     justify-content: space-around;
 }
+.innerCard {
+    margin: 2%;
+    text-align: center;
+}
 
 .itemCard {
     background-color: antiquewhite;
