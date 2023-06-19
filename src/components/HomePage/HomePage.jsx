@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { CategoryBar, SinglePost } from "../zcompConnect";
+import { CategoryBar, SinglePost, AddPost } from "../zcompConnect";
 import { fetchApi } from "../index";
 import "./Homepage.css";
 
@@ -12,7 +12,6 @@ export default function HomePage() {
   const filteredPosts = allPosts.filter((targetedPost) => {
    let PostInQuestion = targetedPost.title.toLowerCase();
    let searchQuery = searchedItem.toLowerCase()
-    console.log(targetedPost)
 
    if (PostInQuestion.includes(searchQuery)){
     return targetedPost
@@ -22,22 +21,20 @@ export default function HomePage() {
 
   useEffect(() => {
     const getPosts = async () => {
-        // console.log("hi am props ",  props)
       try {
         const response = await fetchApi();
-        // console.log(response)
         setAllPosts(response);
       } catch (error) {
         console.log(error);
       }
     };
     getPosts();
-  }, []);
+  }, [allPosts]);
 
   return (
     <div>
       <div className="categories">
-        {/* i dont know if we want to hard code in the catagories or not. i am going to hard code them in and we can change it late if needs be */}
+        {/* i dont know if we want to hard code in the catagories or not. i am going to hard code them in and we can change it later if need be */}
         <CategoryBar />
       </div>
       <div className="searchbar">

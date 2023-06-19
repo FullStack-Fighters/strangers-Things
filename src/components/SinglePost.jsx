@@ -11,18 +11,6 @@ const SinglePost = (props) => {
     const [allPosts, setAllPosts] = useState([props.allPosts])
     const navigate =useNavigate()
 
-  //   useEffect( () => {
-  //   const getData = async () => {
-  //       try {
-  //           const response = await fetchApi()
-  //           setAllPosts(response) 
-  //       } catch (error) {
-  //           console.log(error)
-  //       }
-  //   }
-  //   getData()
-  // }, [allPosts])
-
     const deletePost = async () => {
     try {
       const response = await fetch(`${BASE_URL}/posts/${props.element._id}`, {
@@ -41,27 +29,36 @@ const SinglePost = (props) => {
         }
       });
       console.log("updated item list", updatedItemList)
-      setAllPosts(updatedItemList);
+      setAllPosts(updatedItemList)
+
     } catch (error) {
       console.log(error);
     }
   }
   const handleClick = ()=>{
-    navigate(`/`)
+    navigate('/posts/:postid')
 
 
   }
 
   return (
-    <div className="itemCard"  onClick={handleClick}>
+    <div className="itemCard">
       <h2>{props.element.title}</h2>
       <p>Description: {props.element.description}</p>
       <p>Price: {props.element.price}</p>
       <p>Location: {props.element.location}</p>
-      <p>Delivery Available: {props.element.willDeliver}</p>
+      <div>
+        {
+        props.element.willDeliver == true ? 
+        <p>Delivery Available</p> 
+        : <p>Pickup Only</p>}
+      </div>
       <button>Message owner: {props.element.author._id}</button>
+      <button onClick={handleClick} value="buttonMore" >More Details</button>
             
-      <button onClick={deletePost} value={props.element._id}>
+      <button value={props.element._id}
+        onClick={deletePost}
+       >
       Delete Product
       </button>
     </div>
