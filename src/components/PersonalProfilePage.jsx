@@ -7,6 +7,7 @@ import MessagesFromOthers from "./MessagesReceived";
 const MyProfile = () => {
     const [myPosts, setMyPosts] = useState([])
     const [myId, setMyId] = useState("")
+    const [myTitle, setMyTitle] = useState("")
     const [myUsername, setMyUsername] = useState("")
     const [myMessages, setMyMessages] = useState([])
     const [myProfileData, setMyProfileData] = useState({})
@@ -34,6 +35,7 @@ useEffect(() => {
             setMyProfileData(response.data);
             setMyPosts(response.data.posts)
             setMyId(response.data._id) 
+            setMyTitle(response.data.title)
             setMyUsername(response.data.username)
             setMyMessages(response.data.messages)
     } catch (error) {
@@ -41,18 +43,19 @@ useEffect(() => {
     }
     };
     getUserData();
-  }, [myProfileData]);
+  }, []);
 
     return (
         <>
         <div>
             <h2>Hello {myUsername}</h2>
             <div>
-                <h2>Your Messages</h2>
+                <h2>Your Item Messages</h2>
                 {
                     myMessages && myMessages.length  ? (myMessages.map((ele, idx) =>{
                         return (
                             <div key={idx}>
+                                <p>Item: {myTitle}</p>
                                 <p>{ele.content}</p>
 
                             </div>

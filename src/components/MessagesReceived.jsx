@@ -29,7 +29,6 @@ const MessagesFromOthers = () => {
         }
             getMessagesFromOthers()
     }, [])
-    
 
     return(
         <div>
