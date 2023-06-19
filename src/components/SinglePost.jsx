@@ -36,31 +36,34 @@ const SinglePost = (props) => {
     }
   }
   const handleClick = ()=>{
-    navigate('/posts/:postid')
+    navigate(`/posts/${props.element._id}`)
 
 
   }
 
   return (
     <div className="itemCard">
+      <div className="innerCard">
+
       <h2>{props.element.title}</h2>
       <p>Description: {props.element.description}</p>
       <p>Price: {props.element.price}</p>
       <p>Location: {props.element.location}</p>
       <div>
         {
-        props.element.willDeliver == true ? 
-        <p>Delivery Available</p> 
-        : <p>Pickup Only</p>}
+          props.element.willDeliver == true ? 
+          <p>Delivery Available</p> 
+          : <p>Pickup Only</p>}
       </div>
-      <button>Message owner: {props.element.author._id}</button>
-      <button onClick={handleClick} value="buttonMore" >More Details</button>
+      <button>Message: {props.element.author.username}</button>
+      <button onClick={handleClick} value="buttonMore" >See More</button>
             
       <button value={props.element._id}
         onClick={deletePost}
-       >
+        >
       Delete Product
       </button>
+         </div>
     </div>
   );
 }
