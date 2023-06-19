@@ -3,9 +3,10 @@ import { useNavigate, Link } from "react-router-dom";
 import { BASE_URL, currentToken, fetchApi} from "../components/index"
 import "../App.css"
 
-const NewMessages = () => {
+const NewMessages = (props) => {
     const [newMessage, setNewMessage] = useState([])
-    const [allUserMessages, setAllUserMessages] = useState("")
+    const [allUserMessages, setAllUserMessages] = useState([])
+    let myPostId = props.ownerPostId
 
     useEffect (() => {
         const getAllMessages = async () => {
@@ -14,6 +15,7 @@ const NewMessages = () => {
                 if (allUserMessages.length) {
                 setAllUserMessages(response.messages.content)
                 }
+                
             } catch (error) {
                 console.log(error)
             }
@@ -21,13 +23,11 @@ const NewMessages = () => {
         getAllMessages()
     }, [])
   
-    let postId = "648809a45142420014144cf3"
-
     const postMessages = async (event) => {
         event.preventDefault()
 
         try {
-            const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
+            const response = await fetch(`${BASE_URL}/posts/${myPostId}/messages`, {
                 method: "POST", 
                 headers: {
                     'Content-Type': 'application/json', 
@@ -40,11 +40,11 @@ const NewMessages = () => {
                 })
             })
             const result = await response.json()
-            
-            setNewMessage(result.data.message)
+            if (result.data.message.content){
+            setNewMessage(result.data.message.content)
+            }
             setAllUserMessages([...allUserMessages, newMessage])
-            
-        } catch (error) {
+         } catch (error) {
             console.log(error)
         }
     } 

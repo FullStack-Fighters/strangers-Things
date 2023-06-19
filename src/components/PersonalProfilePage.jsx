@@ -8,7 +8,7 @@ const MyProfile = () => {
     const [myId, setMyId] = useState("")
     const [myUsername, setMyUsername] = useState("")
     const [myMessages, setMyMessages] = useState([])
-    const [myProfileData, setMyProfileData] = useState([])
+    const [myProfileData, setMyProfileData] = useState({})
     
     const myUserData = async () => {
     try {
@@ -30,7 +30,6 @@ useEffect(() => {
     const getUserData = async () => {
         try {
             const response = await myUserData();
-            console.log(response)
             setMyProfileData(response.data);
             setMyPosts(response.data.posts)
             setMyId(response.data._id) 
@@ -41,13 +40,13 @@ useEffect(() => {
     }
     };
     getUserData();
-  }, []);
+  }, [myProfileData]);
 
     return (
         <>
         <div>
             <h2>Hello {myUsername}</h2>
-            <div>
+            {/* <div>
                 {
                     myMessages && myMessages.length  ? (myMessages.map((message, idx) =>{
                         return (
@@ -60,7 +59,7 @@ useEffect(() => {
                     }))                 
                  : <p>You have no messages.</p>
                 }
-            </div>
+            </div> */}
         </div>
 
         </>
