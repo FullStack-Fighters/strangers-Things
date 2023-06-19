@@ -8,8 +8,12 @@ export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
-  async function registeredUser() {
+  
+  function reload(){
+    window.location.reload(true);
+   }
+  
+   async function registeredUser() {
     try {
       const response = await fetch(`${BASE_URL}/users/login`, {
         method: "POST",
@@ -30,6 +34,7 @@ export default function LoginPage() {
       } else {
         localStorage.setItem("token", data.data.token);
         navigate("/");
+        reload()
       }
     } catch (error) {
       console.log("LoginPage register ", error);

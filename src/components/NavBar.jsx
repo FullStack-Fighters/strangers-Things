@@ -2,19 +2,31 @@
  import { currentToken } from "."
  
  export default function NavBar(){
+   function reload(){
+     window.location.reload(true);
+    }
+    function logout(){
+      localStorage.clear();
+      reload()
+    }
+
     return (
         <div className="header">
-        <button id="homeButton"><Link to="/">Home</Link></button>
-
-        {currentToken?
+        <div id="logoBox">
+          <h1 id="title"><Link to="/" id="title">Not Craigslist</Link></h1>
+          <h5>because it actually looks good</h5>
+        </div>
         <div>
-        <button id="newPostButton"><Link to="/new-post">Add New Post</Link></button>
-        <button id="profileButton"><Link to="/owner">My Profile</Link></button>
+        {currentToken?
+        <div id="buttonBox">
+        <button id="navButtons" ><Link id="noDecoration"to="/new-post">Add New Post</Link></button>
+        <button id="navButtons"><Link id="noDecoration" to="/owner">My Profile</Link></button>
+        <button  id="navButtons" onClick={logout} type="submit">Logout</button>
         </div>
         :
-        <button id="loginButton"><Link to="/login">Login</Link></button>
-
+        <button id="navButtons"><Link to="/login">Login</Link></button>
       }
+      </div>
       </div>
     )
  }
