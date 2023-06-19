@@ -4,6 +4,9 @@ import "../App.css"
 
 
 const SentMessages = () => {
+    const [myPosts, setMyPosts] = useState([])
+    const [myId, setMyId] = useState("")
+    
     const myUserData = async () => {
     try {
       const response = await fetch(`${BASE_URL}/users/me`, {
@@ -13,20 +16,18 @@ const SentMessages = () => {
         },
       });
       const result = await response.json();
-      console.log("is there a result?")
-      return(result)
+      setMyId(result._id) 
     } catch (error) {
       console.log(error);
+    } myUserData()
     }
-    myUserData
-  } 
     return (
-        <>
-        <p>Hello World!</p>
-        {
-            <p>My Posts: {myUserData.posts}</p>
-        }
-        </>
+        <div>
+            <p>Hello World!</p>
+            <p>Posts {myId}</p>
+
+            {console.log(myPosts)}
+        </div> 
     )
 }
 
