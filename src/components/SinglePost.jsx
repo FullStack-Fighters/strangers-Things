@@ -1,59 +1,68 @@
-const COHORT_NAME = "/2304-FTB-ET-WEB-FT";
-const BASE_URL = `https://strangers-things.herokuapp.com/api${COHORT_NAME}`;
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { BASE_URL, currentToken, fetchApi} from "../components/index"
+import "../App.css"
 
 
 
 
 const SinglePost = (props) => {
+    
     const [allPosts, setAllPosts] = useState([props.allPosts])
     const navigate =useNavigate()
-    const [destination, setDestination] = useState()
-    // console.log("HELLOOOOO", props)
 
-    const deletePost = async (event) => {
+  //   useEffect( () => {
+  //   const getData = async () => {
+  //       try {
+  //           const response = await fetchApi()
+  //           setAllPosts(response) 
+  //       } catch (error) {
+  //           console.log(error)
+  //       }
+  //   }
+  //   getData()
+  // }, [allPosts])
+
+    const deletePost = async () => {
     try {
-      console.log(event.target.value);
-      const response = await fetch(`${BASE_URL}posts/${event.target.value}`, {
+      const response = await fetch(`${BASE_URL}/posts/${props.element._id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json", 
-            //"Authorization": `Bearer ${TOKEN}`
+            "Authorization": `Bearer ${currentToken}`
           }
         })
       const data = await response.json()
-      console.log(data)
+      console.log("I AM DATA", data)
       
       const updatedItemList = props.allPosts.filter((singleItem) => {
-        if (singleItem.id != event.target.value) {
+        if (singleItem._id != props.element._id) {
           return singleItem;
         }
       });
-
+      console.log("updated item list", updatedItemList)
       setAllPosts(updatedItemList);
     } catch (error) {
       console.log(error);
     }
   }
   const handleClick = ()=>{
-    navigate(`/posts/${props.element._id}`)
+    navigate(`/`)
+
 
   }
 
   return (
     <div className="itemCard"  onClick={handleClick}>
-      <h2>Name of Item: {props.element.title}</h2>
-      {/* <Link to={`/posts/${props.element._id}`}>See More</Link> */}
-      <p>id: {props.element._id}</p>
+      <h2>{props.element.title}</h2>
       <p>Description: {props.element.description}</p>
       <p>Price: {props.element.price}</p>
       <p>Location: {props.element.location}</p>
-      {/* <p>Delivery Available: {({props.post.willDeliver} ? "Yes" : "No, pickup only")}</p> */}
-      <p>Message owner: {props.element.author._id}</p>
+      <p>Delivery Available: {props.element.willDeliver}</p>
+      <button>Message owner: {props.element.author._id}</button>
             
-      <button onClick={deletePost} value={props.element.id}>
-        Delete Product #{props.element.name}
+      <button onClick={deletePost} value={props.element._id}>
+      Delete Product
       </button>
     </div>
   );

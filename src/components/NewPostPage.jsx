@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react"
-import { fetchApi } from "./index"
-const COHORT_NAME = "/2304-FTB-ET-WEB-FT";
-const BASE_URL = `https://strangers-things.herokuapp.com/api${COHORT_NAME}`;
+import { fetchApi, BASE_URL, currentToken } from "./index"
 
 const AddPost = () => {
     const [allPosts, setAllPosts] = useState([])
@@ -9,44 +7,42 @@ const AddPost = () => {
     const [newDescription, setNewDescription] = useState("")
     const [newPrice, setNewPrice] = useState("")
     const [newLocation, setNewLocation] = useState("")
-    const [newMessage, setNewMessage] = useState([])
-    const [newWillDeliver, setNewWillDeliver] = useState(false)
+    const [newWillDeliver, setNewWillDeliver] = useState("")
 
     useEffect( () => {
         const getData = async () => {
             try {
                 const response = await fetchApi()
-                const data = response.json()
-                setAllPosts(data.data.posts) 
+                setAllPosts(response) 
             } catch (error) {
                 console.log(error)
             }
         }
         getData()
     }, [])
+  
 
     const sendPostRequest = async (event) => {
         event.preventDefault()
-        console.log(event.target)
         try {
             const response = await fetch(`${BASE_URL}/posts`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
-                    // "Authorization": `Bearer ${TOKEN}`
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${currentToken}`
                 }, 
                 body: JSON.stringify({
                      post: {
-                        title: setNewTitle,
-                        description: setNewDescription,
-                        price: setNewPrice,
-                        location: setNewLocation,
-                        message: setNewMessage,
-                        willDeliver: setNewWillDeliver
+                        title: newTitle,
+                        description: newDescription,
+                        price: newPrice,
+                        location: newLocation,
+                        willDeliver: newWillDeliver
                     }
                 })
             });
             const data = await response.json();
+            console.log("new form data", data)
             setAllPosts([...allPosts, data])
             } catch (error) {
                 console.log (error)
@@ -66,7 +62,7 @@ const AddPost = () => {
             onChange={(event) => {
               setNewTitle(event.target.value);
             }}
-          ></input>
+          ></input> <br />
 
           <label htmlFor="description">Enter Item Description Below:</label>
           <br />
@@ -78,7 +74,7 @@ const AddPost = () => {
             onChange={(event) => {
               setNewDescription(event.target.value);
             }}
-          ></input>
+          ></input> <br />
 
           <label htmlFor="price">Enter Item Price:</label>
           <br />
@@ -89,8 +85,9 @@ const AddPost = () => {
             value={newPrice}
             onChange={(event) => {
               setNewPrice(event.target.value);
+              console.log("price is:", event.target.value)
             }}
-          ></input>
+          ></input> <br />
 
           <label htmlFor="location">Enter Your Location:</label>
           <br />
@@ -102,50 +99,20 @@ const AddPost = () => {
             onChange={(event) => {
               setNewLocation(event.target.value);
             }}
-          ></input>
+          ></input> <br />
 
-          <label htmlFor="message">Send a Message:</label>
-          <br />
-          <input
-            name="message"
-            type="textarea"
-            placeholder="Message"
-            rows="5"
-            cols="100"
-            value={newMessage}
-            onChange={(event) => {
-              setNewMessage(event.target.value);
-            }}
-          ></input>
+          <label htmlFor="willDeliver">Available for Delivery? Leave BLANK for pickup.</label>
+          <input 
+              name="willDeliver" 
+              type="text" 
+              id="deliver"
+              value={newWillDeliver}
+              onChange={(event)  => {
+                setNewWillDeliver(event.target.value)
+                console.log("Delivery?",event.target.value)
+              }}
+          ></input> <br />
 
-            {/* <fieldset>
-                <legend>Select Delivery or Pickup for Item:</legend>
-                <div>
-                    <label htmlFor="willDeliver">Available for Delivery</label>
-                    <input 
-                        name="willDeliver" 
-                        type="radio" 
-                        id="deliver"
-                        value={true}
-                        onChange={
-                            setNewWillDeliver(event.target.value)
-                        }
-                    ></input>
-                </div>
-                <div>
-                <label htmlFor="willDeliver">Pickup Required</label>
-                    <input 
-                        name="willDeliver" 
-                        type="radio" 
-                        id="pickup"
-                        value={false}
-                        onChange={
-                           setNewWillDeliver(event.target.value)
-                        }
-                    ></input>
-                </div>
-            </fieldset> */}
- 
           <button type="submit">Submit!</button>
         </form>
       </>

@@ -8,6 +8,7 @@
         <button id="homeButton"><Link to="/">Home</Link></button>
         <button id="loginButton"><Link to="/login">Login</Link></button>
         <button id="newPostButton"><Link to="/new-post">Add New Post</Link></button>
+        <button id="messageButton"><Link to="/owner">My Messages</Link></button>
       </div>
     )
  }
