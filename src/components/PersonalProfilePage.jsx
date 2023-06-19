@@ -1,6 +1,7 @@
 import { useState, useEffect, React } from "react";
 import { BASE_URL, currentToken} from "../components/index"
 import "../App.css"
+import MessagesFromOthers from "./MessagesReceived";
 
 
 const MyProfile = () => {
@@ -46,20 +47,23 @@ useEffect(() => {
         <>
         <div>
             <h2>Hello {myUsername}</h2>
-            {/* <div>
+            <div>
+                <h2>Your Messages</h2>
                 {
-                    myMessages && myMessages.length  ? (myMessages.map((message, idx) =>{
+                    myMessages && myMessages.length  ? (myMessages.map((ele, idx) =>{
                         return (
                             <div key={idx}>
-                                <h2>Your Messages</h2>
-                                <p>{message}</p>
+                                <p>{ele.content}</p>
 
                             </div>
                         )
                     }))                 
                  : <p>You have no messages.</p>
                 }
-            </div> */}
+            </div>
+            <div>
+                <MessagesFromOthers />
+            </div>
         </div>
 
         </>

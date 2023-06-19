@@ -20,8 +20,6 @@ export default function RenderPost() {
         const response = await fetch(`${BASE_URL}/posts`);
         const data = await response.json();
         setAllPosts(data.data.posts);
-        console.log("ALL POSTS:", allPosts)
-        console.log("POST ID:", postId)
 
         allPosts.filter((targetedPost) => {
           if (targetedPost._id == postId) {

@@ -8,7 +8,7 @@ const AddPost = () => {
     const [newDescription, setNewDescription] = useState("")
     const [newPrice, setNewPrice] = useState("")
     const [newLocation, setNewLocation] = useState("")
-    const [newWillDeliver, setNewWillDeliver] = useState("")
+    const [newWillDeliver, setNewWillDeliver] = useState(true)
     const navigate =useNavigate()
 
     useEffect( () => {

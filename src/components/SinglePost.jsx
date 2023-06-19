@@ -55,7 +55,6 @@ const SinglePost = (props) => {
           <p>Delivery Available</p> 
           : <p>Pickup Only</p>}
       </div>
-      <button>Message: {props.element.author.username}</button>
       <button onClick={handleClick} value="buttonMore" >See More</button>
             
       <button value={props.element._id}

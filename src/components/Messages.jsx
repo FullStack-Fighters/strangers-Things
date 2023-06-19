@@ -65,6 +65,7 @@ const NewMessages = (props) => {
                 ></input>
                 <button type="submit">Send Message!</button>
             </form>
+            
         </>
 
     )
