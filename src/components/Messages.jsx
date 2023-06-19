@@ -5,7 +5,7 @@ import "../App.css"
 
 const NewMessages = () => {
     const [newMessage, setNewMessage] = useState([])
-    const postId = 
+    
 
 
     const postMessages = async () => {
@@ -40,7 +40,7 @@ const NewMessages = () => {
             console.log(error)
         }
     }
-    gettMessages()
+    getMessages()
     }, [])
 
     return (
