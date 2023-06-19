@@ -6,6 +6,8 @@ import "../App.css"
 const SentMessages = () => {
     const [myPosts, setMyPosts] = useState([])
     const [myId, setMyId] = useState("")
+    const [myUsername, setMyUsername] = useState("")
+    const [myMessages, setMyMessages] = useState([])
     
     const myUserData = async () => {
     try {
@@ -16,18 +18,30 @@ const SentMessages = () => {
         },
       });
       const result = await response.json();
-      setMyId(result._id) 
+      setMyPosts(result.data.posts)
+      setMyId(result.data._id) 
+      setMyUsername(result.data.username)
+      setMyMessages(result.data.myMessages)
+
     } catch (error) {
       console.log(error);
-    } myUserData()
+    } 
     }
+    myUserData()
     return (
         <div>
-            <p>Hello World!</p>
-            <p>Posts {myId}</p>
+            <p>Hello {myUsername}</p>
+            {/* <p>Posts {myPosts}</p>
+            <p>Messages {myMessages}</p> */}
+            {console.log(myMessages)}
 
-            {console.log(myPosts)}
-        </div> 
+            {/* <div>
+                {
+                    myMessages.length  ?                   
+                    myMessages : <p>You have no messages.</p>
+                }
+            </div> */}
+        </div>
     )
 }
 
