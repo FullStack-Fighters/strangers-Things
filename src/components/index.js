@@ -1,5 +1,7 @@
+
 const COHORT_NAME = "/2304-FTB-ET-WEB-FT";
-const BASE_URL = `https://strangers-things.herokuapp.com/api${COHORT_NAME}`
+export const BASE_URL = `https://strangers-things.herokuapp.com/api${COHORT_NAME}`
+export let currentToken = localStorage.getItem("token")
 
 export const fetchApi = async () => {
     try {
