@@ -45,7 +45,6 @@ const AddPost = () => {
             });
             const data = await response.json();
             setAllPosts([...allPosts, data])
-            console.log("UPDATED POST LIST", allPosts)
             } catch (error) {
                 console.log (error)
         }

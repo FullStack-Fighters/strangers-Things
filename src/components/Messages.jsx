@@ -5,18 +5,27 @@ import "../App.css"
 
 const NewMessages = () => {
     const [newMessage, setNewMessage] = useState([])
-    const [postId, setPostId] = useState("")
-    
-    
-    const getPostId = async () => {
-        const response = await fetchApi()
-        console.log("HELLO!!!", response._id)
-        setPostId(response._id)
-    }
-    getPostId()
+    const [allUserMessages, setAllUserMessages] = useState("")
+
+    useEffect (() => {
+        const getAllMessages = async () => {
+            try {
+                const response = await fetchApi()
+                if (allUserMessages.length) {
+                setAllUserMessages(response.messages.content)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getAllMessages()
+    }, [])
+  
+    let postId = "648809a45142420014144cf3"
 
     const postMessages = async (event) => {
         event.preventDefault()
+
         try {
             const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
                 method: "POST", 
@@ -31,24 +40,15 @@ const NewMessages = () => {
                 })
             })
             const result = await response.json()
-            console.log("POST MESSAGE RESULT:", result)
+            
+            setNewMessage(result.data.message)
+            setAllUserMessages([...allUserMessages, newMessage])
             
         } catch (error) {
             console.log(error)
         }
     } 
-    useEffect( ()=> {
-        const getMessages = async () => {
-            try {
-                const response = await postMessages()
-                setNewMessage(response)
-              } catch (error) {
-            console.log(error)
-        }
-    }
-    getMessages()
-    }, [])
-
+  
     return (
         <>
             <h1>Send a New Message</h1>
