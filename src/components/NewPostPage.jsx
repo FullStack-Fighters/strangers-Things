@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { fetchApi, BASE_URL, currentToken } from "./index"
+import { useNavigate, Link } from "react-router-dom";
 
 const AddPost = () => {
     const [allPosts, setAllPosts] = useState([])
@@ -8,6 +9,7 @@ const AddPost = () => {
     const [newPrice, setNewPrice] = useState("")
     const [newLocation, setNewLocation] = useState("")
     const [newWillDeliver, setNewWillDeliver] = useState("")
+    const navigate =useNavigate()
 
     useEffect( () => {
         const getData = async () => {
@@ -42,8 +44,8 @@ const AddPost = () => {
                 })
             });
             const data = await response.json();
-            console.log("new form data", data)
             setAllPosts([...allPosts, data])
+            console.log("UPDATED POST LIST", allPosts)
             } catch (error) {
                 console.log (error)
         }
@@ -85,7 +87,6 @@ const AddPost = () => {
             value={newPrice}
             onChange={(event) => {
               setNewPrice(event.target.value);
-              console.log("price is:", event.target.value)
             }}
           ></input> <br />
 
@@ -101,17 +102,35 @@ const AddPost = () => {
             }}
           ></input> <br />
 
-          <label htmlFor="willDeliver">Available for Delivery? Leave BLANK for pickup.</label>
-          <input 
-              name="willDeliver" 
-              type="text" 
-              id="deliver"
-              value={newWillDeliver}
-              onChange={(event)  => {
-                setNewWillDeliver(event.target.value)
-                console.log("Delivery?",event.target.value)
-              }}
-          ></input> <br />
+          <fieldset>
+              <legend>Pickup or Delivery:</legend>
+              <div>
+                <label htmlFor="willDeliver">Available for Delivery </label>
+                <input 
+                  type="radio" 
+                  id="willDeliver" 
+                  name="willDeliver" 
+                  value={newWillDeliver}
+                  onChange={(event)=> {
+                    setNewWillDeliver(event.target.value)
+                  }
+                  }>
+                  </input> 
+              </div>
+              <div>
+                <label htmlFor="willDeliver">Pickup Only </label>
+                <input 
+                  type="radio" 
+                  id="willDeliver" 
+                  name="willDeliver" 
+                  value={newWillDeliver}
+                  onChange={()=> {
+                    setNewWillDeliver(false)
+                  }
+                  }>
+                  </input> 
+              </div>
+          </fieldset>
 
           <button type="submit">Submit!</button>
         </form>
