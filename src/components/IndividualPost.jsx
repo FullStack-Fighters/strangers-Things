@@ -10,7 +10,7 @@ import NewMessages from "./Messages";
 export default function RenderPost() {
   const [allPosts, setAllPosts] = useState([]);
   const { postId } = useParams();
-  const [postInUse, setPostInUse] = useState({});
+  const [postInUse, setPostInUse] = useState([]);
   const COHORT_NAME = "/2304-FTB-ET-WEB-FT";
   const BASE_URL = `https://strangers-things.herokuapp.com/api${COHORT_NAME}`;
 
@@ -20,9 +20,11 @@ export default function RenderPost() {
         const response = await fetch(`${BASE_URL}/posts`);
         const data = await response.json();
         setAllPosts(data.data.posts);
+        console.log("ALL POSTS:", allPosts)
+        console.log("POST ID:", postId)
 
-        data.data.posts.filter((targetedPost) => {
-          if (targetedPost._id.toLowerCase() == postId.toLowerCase()) {
+        allPosts.filter((targetedPost) => {
+          if (targetedPost._id == postId) {
             setPostInUse(targetedPost);
           }
         });
@@ -32,11 +34,6 @@ export default function RenderPost() {
     };
     fetchApi();
   }, []);
-  console.log(postInUse);
-
-  // const filteredPost = allPosts.filter(async (targetedPost)=>{
-  //
-  // })
 
   return (
     <>
@@ -50,7 +47,7 @@ export default function RenderPost() {
               <p>location: {postInUse.location}</p>
               <p>Price: {postInUse.price}</p>
               {postInUse.isAuthor? <button>delete</button>: <p>only authors of posts can delete posts</p>}
-              <div><NewMessages /></div>
+              <div><NewMessages ownerPostId={postId} /></div>
             </div>
           
       ) : (
