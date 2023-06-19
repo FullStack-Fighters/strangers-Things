@@ -1,5 +1,6 @@
 import { useState, useEffect, React } from "react";
 import { BASE_URL, currentToken} from "../components/index"
+import { NewMessages } from "./zcompConnect";
 import "../App.css"
 
 
@@ -29,6 +30,7 @@ const MyProfile = () => {
     }
     myUserData()
     return (
+        <>
         <div>
             <p>Hello {myUsername}</p>
             {/* <p>Posts {myPosts}</p>
@@ -42,6 +44,10 @@ const MyProfile = () => {
                 }
             </div> */}
         </div>
+        <div>
+            <NewMessages />
+        </div>
+        </>
     )
 }
 
