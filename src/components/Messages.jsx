@@ -5,10 +5,18 @@ import "../App.css"
 
 const NewMessages = () => {
     const [newMessage, setNewMessage] = useState([])
+    const [postId, setPostId] = useState("")
     
+    
+    const getPostId = async () => {
+        const response = await fetchApi()
+        console.log("HELLO!!!", response._id)
+        setPostId(response._id)
+    }
+    getPostId()
 
-
-    const postMessages = async () => {
+    const postMessages = async (event) => {
+        event.preventDefault()
         try {
             const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
                 method: "POST", 
@@ -29,10 +37,8 @@ const NewMessages = () => {
             console.log(error)
         }
     } 
-    postMessages()
-
     useEffect( ()=> {
-        const gettMessages = async () => {
+        const getMessages = async () => {
             try {
                 const response = await postMessages()
                 setNewMessage(response)
@@ -45,7 +51,20 @@ const NewMessages = () => {
 
     return (
         <>
-            <h1>Hello World!</h1>
+            <h1>Send a New Message</h1>
+            <form onSubmit={postMessages}>
+                <label htmlFor="content">Enter your message below:</label>
+                <br/>
+                <input 
+                name="content"
+                type="text"
+                value={newMessage} 
+                onChange={(event)=> {
+                    setNewMessage(event.target.value)
+                }}
+                ></input>
+                <button type="submit">Send Message!</button>
+            </form>
         </>
 
     )

@@ -1,6 +1,5 @@
 import { useState, useEffect, React } from "react";
 import { BASE_URL, currentToken} from "../components/index"
-import { NewMessages } from "./zcompConnect";
 import "../App.css"
 
 
@@ -48,7 +47,6 @@ useEffect(() => {
         <>
         <div>
             <h2>Hello {myUsername}</h2>
-            {console.log(myMessages)}
             <div>
                 {
                     myMessages && myMessages.length  ? (myMessages.map((message, idx) =>{
