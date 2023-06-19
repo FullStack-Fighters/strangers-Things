@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchApi } from "./index";
 import NewMessages from "./Messages";
 
@@ -11,6 +11,7 @@ export default function RenderPost() {
   const [allPosts, setAllPosts] = useState([]);
   const { postId } = useParams();
   const [postInUse, setPostInUse] = useState([]);
+  const navigate =useNavigate()
   const COHORT_NAME = "/2304-FTB-ET-WEB-FT";
   const BASE_URL = `https://strangers-things.herokuapp.com/api${COHORT_NAME}`;
 
@@ -33,6 +34,10 @@ export default function RenderPost() {
     fetchApi();
   }, []);
 
+    const handleClick = () => {
+      navigate('/send-message')
+    }
+
   return (
     <>
 
@@ -45,12 +50,13 @@ export default function RenderPost() {
               <p>location: {postInUse.location}</p>
               <p>Price: {postInUse.price}</p>
               {postInUse.isAuthor? <button>delete</button>: <p>only authors of posts can delete posts</p>}
-              <div><NewMessages ownerPostId={postId} /></div>
             </div>
           
-      ) : (
-        <h2>Loading...</h2>
-      )}
+          ) : (
+            <h2>Loading...</h2>
+            )}
+      {/* <button onClick={handleClick} value="messageButton">Message the Owner!</button> */}
+      {/* <div><NewMessages ownerPostId={postId} /></div> */}
     </>
   );
 }

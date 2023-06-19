@@ -55,8 +55,7 @@ const SinglePost = (props) => {
           <p>Delivery Available</p> 
           : <p>Pickup Only</p>}
       </div>
-      <button onClick={handleClick} value="buttonMore" >See More</button>
-            
+      <button onClick={handleClick} value="buttonMore" >See More</button>    
       <button value={props.element._id}
         onClick={deletePost}
         >

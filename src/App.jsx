@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { fetchApi } from "./components/index";
-import { HomePage, LoginPage, SinglePost, AddPost, NavBar, RegisterPage, IndividualPost, MyProfile } from "./components/zcompConnect";
+import { HomePage, LoginPage, SinglePost, AddPost, NavBar, RegisterPage, IndividualPost, MyProfile, NewMessages } from "./components/zcompConnect";
 
 function App() {
   async function getInfo() {
@@ -24,6 +24,8 @@ function App() {
         <Route path="/posts/:postId" element={<IndividualPost />} />
         <Route path="/new-post" element={<AddPost />} />
         <Route path="/owner" element={<MyProfile />} />
+        <Route path="/send-message" element={<NewMessages />} />
+
       </Routes>
     </>
   );
