@@ -33,22 +33,21 @@ export default function HomePage() {
 
   return (
     <div>
-      <div className="categories">
-        {/* i dont know if we want to hard code in the catagories or not. i am going to hard code them in and we can change it later if need be */}
-        <CategoryBar />
-      </div>
       <div className="searchbar">
+       <div>
         <form>
-          <label>Search Bar</label>
           <input
+            id="searchbar"
             type="text"
             value={searchedItem}
+            placeholder="search here "
             onChange={(e) => {
               setSearchedItem(e.target.value);
               console.log(searchedItem);
             }}
           ></input>
         </form>
+        </div>
       </div>
       <div className="cardBox">
        { filteredPosts && filteredPosts.length ? 

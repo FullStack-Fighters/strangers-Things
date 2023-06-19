@@ -1,32 +1,62 @@
-.header{
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    margin-left:5%;
-    margin-right: 3%;
+.header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-left: 5%;
+  margin-right: 3%;
 }
-
-.categories {
+#title{
+    color: black;
+    text-decoration: none;
+}
+#logoBox{
+    border: .25rem solid #d5ad18;
+    border-radius: 25px;
+    padding: .5rem;
+    text-align: center;
+    background: rgb(251, 251, 251);
+}
+#buttonBox{
+    margin-top: 2rem;
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-around;
-    margin-left: 15rem;
-    margin-right: 15rem;
-    background-color:blue;
-    border-radius: 15%;
+}
+#navButtons{
+    padding: 6%;
+    margin: .5rem;
+    flex-wrap: nowrap;
+    border-radius: 50%;
+    text-decoration: none;
+    color: black;
+    border:.25rem solid #d5ad18;
+}
+#noDecoration{
+text-decoration: none;
 }
 .searchbar {
-    text-align: center;
-    margin-top: 1rem;
+  text-align: center;
+  
+}
+#searchbar {
+  text-align: center;
+  border-radius: 15px 50px;
+  margin-top: 1rem;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-top: 0.5rem;
+  padding-bottom: .5rem;
+  padding-left: 15rem;
+  padding-right: 15rem;
+  background: rgb(251, 251, 251);
+  border:.25rem solid #d5ad18;
 }
 
-
-.cardBox{
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    justify-content: space-around;
+.cardBox {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  justify-content: space-around;
 }
 .innerCard {
     margin: 2%;
@@ -34,28 +64,36 @@
 }
 
 .itemCard {
-    background-color: antiquewhite;
+    background-color: rgb(249, 249, 250);
+    border: .25rem solid #d5ad18;
     color: black;
     width: 16rem;
     height: 22rem;
-   margin-top: 2rem;
-   margin-left: 1rem;
-   margin-right: 1rem;
-   border-radius: 6%;
-   justify-content: center;
-}
-.itemCard img{
-    width: 98%;
-    height: auto;
-    margin-top: .25rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
     border-radius: 6%;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.itemCard img {
+  width: 98%;
+  height: auto;
+  margin-top: 0.25rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 6%;
 }
 
 #location-price {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 1rem;
-    margin-right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+button{
+    background-color: aliceblue;
+    border: .14rem solid#acacac;
+    border-radius: 15px 50px;
 }
