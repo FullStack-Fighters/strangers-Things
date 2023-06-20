@@ -1,9 +1,10 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { fetchApi } from "./components/index";
-import { HomePage, LoginPage, SinglePost, AddPost, NavBar, RegisterPage, IndividualPost, MyProfile, NewMessages } from "./components/zcompConnect";
+import { HomePage, LoginPage, AddPost, NavBar, RegisterPage, IndividualPost, MyProfile, NewMessages } from "./components/zcompConnect";
 
 function App() {
+
   async function getInfo() {
     try {
       let response = await fetchApi();
@@ -12,8 +13,9 @@ function App() {
       console.log(error);
     }
   }
-
   getInfo()
+
+
   return (
     <>
       <NavBar />
@@ -24,7 +26,7 @@ function App() {
         <Route path="/posts/:postId" element={<IndividualPost />} />
         <Route path="/new-post" element={<AddPost />} />
         <Route path="/owner" element={<MyProfile />} />
-        <Route path="/send-message" element={<NewMessages />} />
+        <Route path="/posts/:postId/send-message" element={<NewMessages />} />
 
       </Routes>
     </>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchApi } from "./index";
-import NewMessages from "./Messages";
+
+
 
 // Note for anyone viewing examining this code for best practice
 // this api does not have a function for retrieving a single post by use of id.
@@ -35,7 +35,7 @@ export default function RenderPost() {
   }, []);
 
     const handleClick = () => {
-      navigate('/send-message')
+      navigate(`/posts/${postId}/send-message`)
     }
 
   return (
@@ -55,8 +55,7 @@ export default function RenderPost() {
           ) : (
             <h2>Loading...</h2>
             )}
-      {/* <button onClick={handleClick} value="messageButton">Message the Owner!</button> */}
-      {/* <div><NewMessages ownerPostId={postId} /></div> */}
+      <button onClick={handleClick} value="messageButton">Message the Owner!</button>
     </>
   );
 }
