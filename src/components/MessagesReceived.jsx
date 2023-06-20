@@ -26,7 +26,7 @@ const MessagesFromOthers = () => {
 
     return(
         <div>
-            <h2>What are People Saying?</h2>
+            <h2>Messages about Your Stuff</h2>
             <div>
                 { messagesFromOthers && messagesFromOthers.length ? 
                 <p>{messagesFromOthers}</p> : 
