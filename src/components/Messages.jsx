@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { BASE_URL, currentToken, fetchApi} from "../components/index"
 import "../App.css"
 
-const NewMessages = (props) => {
-    const [newMessage, setNewMessage] = useState([])
+const NewMessages = () => {
+    const [newMessage, setNewMessage] = useState('')
     const [allUserMessages, setAllUserMessages] = useState([])
-    let myPostId = props.ownerPostId
+    const { postId } = useParams();
 
     useEffect (() => {
         const getAllMessages = async () => {
@@ -25,9 +25,8 @@ const NewMessages = (props) => {
   
     const postMessages = async (event) => {
         event.preventDefault()
-
         try {
-            const response = await fetch(`${BASE_URL}/posts/${myPostId}/messages`, {
+            const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
                 method: "POST", 
                 headers: {
                     'Content-Type': 'application/json', 
@@ -40,10 +39,9 @@ const NewMessages = (props) => {
                 })
             })
             const result = await response.json()
-            if (result.data.message.content){
             setNewMessage(result.data.message.content)
-            }
             setAllUserMessages([...allUserMessages, newMessage])
+            console.log(allUserMessages)
          } catch (error) {
             console.log(error)
         }
@@ -53,10 +51,10 @@ const NewMessages = (props) => {
         <>
             <h1>Send a New Message</h1>
             <form onSubmit={postMessages}>
-                <label htmlFor="content">Enter your message below:</label>
+                <label htmlFor="message">Enter your message below:</label>
                 <br/>
                 <input 
-                name="content"
+                name="message"
                 type="text"
                 value={newMessage} 
                 onChange={(event)=> {

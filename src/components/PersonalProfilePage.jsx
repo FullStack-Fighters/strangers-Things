@@ -55,7 +55,6 @@ useEffect(() => {
                     myMessages && myMessages.length  ? (myMessages.map((ele, idx) =>{
                         return (
                             <div key={idx}>
-                                <p>Item: {myTitle}</p>
                                 <p>{ele.content}</p>
 
                             </div>

@@ -5,24 +5,18 @@ import "../App.css"
 
 const MessagesFromOthers = () => {
     const [messagesFromOthers, setMessagesFromOthers] = useState([])
-    const [userId, setUserId] = useState("")
-    const [ownerId, setOwnerId] = useState("")
-    const [title, setTitle] = useState("")
 
     useEffect( ()=>{
         const getMessagesFromOthers = async () => {
             try {
                 const response = await fetchApi()
                 let allMessages = response.messages
+                console.log("ALL MESSAGES:", response.messages)
                 allMessages.map((ele)=> {
-                    setUserId(ele.author._id)
-                    setOwnerId(ele.fromUser._id)
-                    setTitle(ele.title)
-                    if (messagesFromOthers && userId != ownerId) { setMessagesFromOthers(ele.messages)
-                    }
-                    
+                    if(response.isAuthor){
+                        setMessagesFromOthers(ele.messages)
+                    }                      
                 })
-                       
             } catch (error) {
                 console.log(error)
             }
@@ -33,9 +27,13 @@ const MessagesFromOthers = () => {
     return(
         <div>
             <h2>What are People Saying?</h2>
-            <p>Post Title: {title}</p>
-            <p>Message: {messagesFromOthers}</p>
-            <p>From User: {userId}</p>
+            <div>
+                { messagesFromOthers && messagesFromOthers.length ? 
+                <p>{messagesFromOthers}</p> : 
+                    <p>You have no messages.</p>
+                }
+            </div>
+            <p>{messagesFromOthers}</p>
         </div>
 
     )

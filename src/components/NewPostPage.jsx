@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
 import { fetchApi, BASE_URL, currentToken } from "./index"
-import { useNavigate, Link } from "react-router-dom";
 
 const AddPost = () => {
     const [allPosts, setAllPosts] = useState([])
@@ -9,7 +8,6 @@ const AddPost = () => {
     const [newPrice, setNewPrice] = useState("")
     const [newLocation, setNewLocation] = useState("")
     const [newWillDeliver, setNewWillDeliver] = useState(true)
-    const navigate =useNavigate()
 
     useEffect( () => {
         const getData = async () => {
