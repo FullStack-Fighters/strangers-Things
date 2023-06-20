@@ -50,9 +50,9 @@ useEffect(() => {
         <div>
             <h2>Hello {myUsername}</h2>
             <div>
-                <h2>Your Item Messages</h2>
+                <h2>Your Sent Messages</h2>
                 {
-                    myMessages && myMessages.length  ? (myMessages.map((ele, idx) =>{
+                    myMessages && myMessages.length ? (myMessages.map((ele, idx) =>{
                         return (
                             <div key={idx}>
                                 <p>{ele.content}</p>

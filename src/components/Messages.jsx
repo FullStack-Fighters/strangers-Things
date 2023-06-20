@@ -49,7 +49,7 @@ const NewMessages = () => {
   
     return (
         <>
-            <h1>Send a New Message</h1>
+            <h2>Message the Owner</h2>
             <form onSubmit={postMessages}>
                 <label htmlFor="message">Enter your message below:</label>
                 <br/>

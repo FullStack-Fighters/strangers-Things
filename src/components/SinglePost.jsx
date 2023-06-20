@@ -38,7 +38,7 @@ const SinglePost = (props) => {
   const handleClick = ()=>{
     navigate(`/posts/${props.element._id}`)
 
-
+    console.log(props.element.isAuthor)
   }
 
   return (
@@ -55,15 +55,12 @@ const SinglePost = (props) => {
           <p>Delivery Available</p> 
           : <p>Pickup Only</p>}
       </div>
-      <button onClick={handleClick} value="buttonMore" >See More</button>    
+      <button onClick={handleClick} value="buttonMore" >See More</button>   
       <button value={props.element._id}
         onClick={deletePost}
-        >
-      Delete Product
-      </button>
-         </div>
+        > Delete Product </button>
+    </div>
     </div>
   );
-}
-
+        }
 export default SinglePost;
