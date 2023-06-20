@@ -48,15 +48,14 @@ useEffect(() => {
     return (
         <>
         <div>
-            <h2>Hello {myUsername}</h2>
+            <h4>Hello {myUsername}</h4>
             <div>
                 <h2>Your Sent Messages</h2>
                 {
                     myMessages && myMessages.length ? (myMessages.map((ele, idx) =>{
                         return (
                             <div key={idx}>
-                                <p>{ele.content}</p>
-
+                                <p><b>{ele.post.title}:</b> {ele.content}</p>
                             </div>
                         )
                     }))                 
@@ -66,6 +65,32 @@ useEffect(() => {
             <div>
                 <MessagesFromOthers />
             </div>
+            <div>
+                <h2>Your Posts</h2>
+            </div>
+            {
+                myProfileData && myProfileData.length ? (myProfileData.map((ele, idx) =>{
+                    return (
+                         <div key={idx} className="itemCard">
+                            <div className="innerCard">
+                            <h2>{ele.title}</h2>
+                            <p>Description: {ele.description}</p>
+                            <p>Price: {ele.price}</p>
+                            <p>Location: {ele.location}</p>
+                            <div>
+                                {
+                                ele.willDeliver == true ? 
+                                <p>Delivery Available</p> 
+                                : <p>Pickup Only</p>}
+                            </div>
+                            </div>
+                            </div>
+                    )
+                }))                 
+                : <p>You do not have anything listed.</p>
+            }
+
+
         </div>
 
         </>
