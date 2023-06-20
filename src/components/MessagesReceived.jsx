@@ -1,39 +1,47 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { BASE_URL, currentToken, fetchApi} from "../components/index"
+import { BASE_URL, currentToken } from "../components/index"
 import "../App.css"
 
 const MessagesFromOthers = () => {
-    const [messagesFromOthers, setMessagesFromOthers] = useState([])
+    const [allMessages, setAllMessages] = useState([])
+    const [posts, setPosts] = useState([])
 
     useEffect( ()=>{
-        const getMessagesFromOthers = async () => {
+        const getPosts = async () => {
             try {
-                const response = await fetchApi()
-                let allMessages = response.messages
-                console.log("ALL MESSAGES:", response.messages)
-                allMessages.map((ele)=> {
-                    if(response.isAuthor){
-                        setMessagesFromOthers(ele.messages)
-                    }                      
+                const response = await fetch(`${BASE_URL}/posts`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${currentToken}`
+                    }
                 })
+                const result = await response.json()
+                setPosts(result)
+                setAllMessages(result.messages)
             } catch (error) {
                 console.log(error)
             }
         }
-            getMessagesFromOthers()
+            getPosts()
     }, [])
 
     return(
         <div>
             <h2>Messages about Your Stuff</h2>
             <div>
-                { messagesFromOthers && messagesFromOthers.length ? 
-                <p>{messagesFromOthers}</p> : 
+                { 
+                allMessages && allMessages.length ? 
+                (posts.map ((ele, idx) => {
+                    return(
+                        <div key={idx}>
+                            <p><b>{ele.title}</b>{ele.message.content}</p>
+                        </div>
+                    )
+                    }
+                )) : 
                     <p>You have no messages.</p>
                 }
             </div>
-            <p>{messagesFromOthers}</p>
         </div>
 
     )
